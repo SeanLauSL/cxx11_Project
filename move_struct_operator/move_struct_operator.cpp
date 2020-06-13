@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-#include "human.hpp"
+#include "../include/human.hpp"
 
 Human GetStack(Human &s)
 {

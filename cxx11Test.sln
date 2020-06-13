@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "opencv3471", "opencv3471\opencv3471.vcxproj", "{78587426-75FA-4CCC-9864-28746B10170B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "move_struct_operator", "move_struct_operator\move_struct_operator.vcxproj", "{48E311BA-49D4-4396-B946-CC01B0760BFA}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "deque_template_thread_safe", "deque_template_thread_safe\deque_template_thread_safe.vcxproj", "{78587426-75FA-4CCC-9864-28746B10170B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +15,14 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48E311BA-49D4-4396-B946-CC01B0760BFA}.Debug|x64.ActiveCfg = Debug|x64
+		{48E311BA-49D4-4396-B946-CC01B0760BFA}.Debug|x64.Build.0 = Debug|x64
+		{48E311BA-49D4-4396-B946-CC01B0760BFA}.Debug|x86.ActiveCfg = Debug|Win32
+		{48E311BA-49D4-4396-B946-CC01B0760BFA}.Debug|x86.Build.0 = Debug|Win32
+		{48E311BA-49D4-4396-B946-CC01B0760BFA}.Release|x64.ActiveCfg = Release|x64
+		{48E311BA-49D4-4396-B946-CC01B0760BFA}.Release|x64.Build.0 = Release|x64
+		{48E311BA-49D4-4396-B946-CC01B0760BFA}.Release|x86.ActiveCfg = Release|Win32
+		{48E311BA-49D4-4396-B946-CC01B0760BFA}.Release|x86.Build.0 = Release|Win32
 		{78587426-75FA-4CCC-9864-28746B10170B}.Debug|x64.ActiveCfg = Debug|x64
 		{78587426-75FA-4CCC-9864-28746B10170B}.Debug|x64.Build.0 = Debug|x64
 		{78587426-75FA-4CCC-9864-28746B10170B}.Debug|x86.ActiveCfg = Debug|Win32

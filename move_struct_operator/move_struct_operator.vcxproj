@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{78587426-75fa-4ccc-9864-28746b10170b}</ProjectGuid>
+    <ProjectGuid>{48e311ba-49d4-4396-b946-cc01b0760bfa}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>opencv3471</RootNamespace>
+    <RootNamespace>move_struct_operator</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -210,12 +210,10 @@ opencv_ml2413.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="human.hpp" />
-    <ClInclude Include="queue.hpp" />
+    <ClInclude Include="..\include\human.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="move_struct_operator.cpp" />
-    <ClCompile Include="opencvSet.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
