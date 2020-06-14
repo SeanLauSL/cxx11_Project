@@ -3,7 +3,7 @@ using namespace std;
 
 #include "../include/human.hpp"
 
-Human GetStack(Human &s)
+Human GetHuman(Human &s)
 {
 	//return s;
 
@@ -29,9 +29,9 @@ int main()
 	s3 = std::move(s2);//move operator=
 
 	//move class (移动构造和移动赋值)
-	Human s4 = GetStack(s0);//move Constructor
+	Human s4 = GetHuman(s0);//move Constructor
 	Human s5;
-	s5 = GetStack(s0);//move operator=  获取右值时，调用移动赋值，防止复制操作
+	s5 = GetHuman(s0);//move operator=  获取右值时，调用移动赋值，防止复制操作
 
 	//[总结]：声明同时初始化的都是调用构造函数；声明完成后再赋值的调用赋值运算符；
 	//参数为左值则调用常规的构造或赋值；参数为右值则调用移动构造或移动赋值；

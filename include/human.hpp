@@ -8,7 +8,7 @@ public:
 		: mage(age)
 	{
 		this->name = new char[10];
-		cout << "Constructor with age£¡" << endl;
+		cout << "Default Constructor£¡" << endl;
 	}
 
 	Human(int age, const char* name) {
@@ -70,7 +70,7 @@ public:
 
 	~Human()
 	{
-		cout << "~Stack()" << endl;
+		cout << "~Human()" << endl;
 		delete[] name;
 		name = nullptr;
 	};
