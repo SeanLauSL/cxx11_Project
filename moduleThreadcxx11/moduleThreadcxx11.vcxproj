@@ -213,7 +213,6 @@ opencv_ml2413.lib;%(AdditionalDependencies)</AdditionalDependencies>
   <ItemGroup>
     <ClInclude Include="moduleThreadcxx11.h" />
     <ClInclude Include="rwLock.h" />
-    <ClInclude Include="sleep.h" />
     <ClInclude Include="test.h" />
   </ItemGroup>
   <ItemGroup>
