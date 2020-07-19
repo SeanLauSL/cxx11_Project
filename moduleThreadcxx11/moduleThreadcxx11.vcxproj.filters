@@ -21,6 +21,9 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="TestModuleThresh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="rwLock.h">
@@ -29,7 +32,7 @@
     <ClInclude Include="moduleThreadcxx11.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="test.h">
+    <ClInclude Include="TestModuleThread.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

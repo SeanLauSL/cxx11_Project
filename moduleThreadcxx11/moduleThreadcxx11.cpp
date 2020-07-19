@@ -2,12 +2,6 @@
 #include "sleep.h"
 #include "debugMsg.h"
 
-ModuleThread::ModuleThread(int args) :
-	std::thread(&ModuleThread::run, this, args)
-{ 
-}
-
-
 ModuleThread::~ModuleThread()
 {
 	if (!isFinished())
@@ -95,7 +89,7 @@ void ModuleThread::checkThreadStatus()
 	}
 }
 
-void ModuleThread::run(int args)
+void ModuleThread::run()
 {
 	//类构造时，里面的counterMutex变量还未构造完成
 	//且类构造的同时构造了该线程函数
@@ -111,7 +105,7 @@ void ModuleThread::run(int args)
 			break;
 		}
 			
-		callBackFuc(args);
+		callBackFuc();
 	}
 }
 

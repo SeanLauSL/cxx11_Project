@@ -213,11 +213,12 @@ opencv_ml2413.lib;%(AdditionalDependencies)</AdditionalDependencies>
   <ItemGroup>
     <ClInclude Include="moduleThreadcxx11.h" />
     <ClInclude Include="rwLock.h" />
-    <ClInclude Include="test.h" />
+    <ClInclude Include="TestModuleThread.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="moduleThreadcxx11.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="TestModuleThresh.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
