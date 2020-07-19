@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-#include "../include/human.hpp"
+#include "human.hpp"
 
 Human GetHuman(Human &s)
 {
@@ -11,7 +11,6 @@ Human GetHuman(Human &s)
 	return tmp;//tmp 赋值给临时对象，调用移动构造函数
 
 }
-
 int main()
 {
 	//////////////////////////////////////////////////////////////////////////
