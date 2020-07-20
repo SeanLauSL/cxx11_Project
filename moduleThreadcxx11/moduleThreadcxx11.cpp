@@ -12,8 +12,6 @@ ModuleThread::~ModuleThread()
 	}
 	this->join();
 	thread::~thread();
-	//MSG_PRINTF(Msg::MSG_INFO, "\n");//
-	MSG_ARGS(Msg::MSG_INFO, "");
 }
 
 void ModuleThread::start()

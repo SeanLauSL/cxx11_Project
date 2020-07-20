@@ -20,6 +20,8 @@ public:
 public:
 	void callBackFuc()
 	{
+		WriteGuard<WfirstRWLock> wLock(rwLock);//write lock
+		//ReadGuard<WfirstRWLock> rLock(rwLock);//read lock
 		//MSG_PRINTF(Msg::MSG_INFO, "%s %s %s %d\n", "thread ", getTid().c_str(), "Test:", this->data);
 		MSG_ARGS(Msg::MSG_INFO, "thread", getTid().c_str(), "Test:", this->data);
 	}
