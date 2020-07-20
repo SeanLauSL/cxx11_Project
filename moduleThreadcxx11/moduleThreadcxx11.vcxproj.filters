@@ -21,18 +21,15 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="TestModuleThresh.cpp">
+    <ClCompile Include="..\src\debugMsg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="rwLock.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="moduleThreadcxx11.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="TestModuleThread.h">
+    <ClInclude Include="TestModuleThread.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -79,6 +79,7 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>E:\Opencv3.4.7\opencv\build\include;E:\VS2017Project\cxx11Test\include;$(IncludePath)</IncludePath>
     <LibraryPath>E:\Opencv3.4.7\opencv\build\x64\vc15\lib;$(LibraryPath)</LibraryPath>
+    <SourcePath>E:\VS2017Project\cxx11Test\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -147,6 +148,7 @@ opencv_videostab2413d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -210,10 +212,12 @@ opencv_ml2413.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\debugMsg.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\debugMsg.h" />
+    <ClInclude Include="enableIf.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -79,6 +79,7 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>E:\Opencv3.4.7\opencv\build\include;E:\VS2017Project\cxx11Test\include;$(IncludePath)</IncludePath>
     <LibraryPath>E:\Opencv3.4.7\opencv\build\x64\vc15\lib;$(LibraryPath)</LibraryPath>
+    <SourcePath>E:\VS2017Project\cxx11Test\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -88,6 +89,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>E:\VS2017Project\cxx11Test\include;$(IncludePath)</IncludePath>
+    <SourcePath>E:\VS2017Project\cxx11Test\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -212,13 +214,12 @@ opencv_ml2413.lib;%(AdditionalDependencies)</AdditionalDependencies>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="moduleThreadcxx11.h" />
-    <ClInclude Include="rwLock.h" />
-    <ClInclude Include="TestModuleThread.h" />
+    <ClInclude Include="TestModuleThread.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\debugMsg.cpp" />
     <ClCompile Include="moduleThreadcxx11.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="TestModuleThresh.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

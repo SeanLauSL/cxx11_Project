@@ -2,6 +2,7 @@
 #define __TEST_MODULE_THREAD_H
 
 #include "moduleThreadcxx11.h"
+#include "debugMsg.h"
 
 template<typename T>
 class TestModuleThread :
@@ -9,7 +10,7 @@ class TestModuleThread :
 {
 public:
 
-	TestModuleThread(T &_data) :ModuleThread()
+	TestModuleThread(T &_data) : ModuleThread()
 	{
 		data = _data;
 	}
@@ -19,12 +20,13 @@ public:
 public:
 	void callBackFuc()
 	{
-		std::cout << "Test: " << this->data << std::endl; std::cout.flush();
+		//MSG_PRINTF(Msg::MSG_INFO, "%s %s %s %d\n", "thread ", getTid().c_str(), "Test:", this->data);
+		MSG_ARGS(Msg::MSG_INFO, "thread", getTid().c_str(), "Test:", this->data);
 	}
 
 
 private:
-	T data;
+	T data = NULL;
 };
 
 //显式实例化,可以把成员函数实现放到cpp，否则必须全部为内联

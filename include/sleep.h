@@ -1,5 +1,7 @@
 #ifndef __SLEEP_H
 #define __SLEEP_H
+#include <chrono>
+#include <thread>
 
 class TSleep
 {
