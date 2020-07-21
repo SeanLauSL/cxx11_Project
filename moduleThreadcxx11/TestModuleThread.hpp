@@ -17,15 +17,39 @@ public:
 
 	virtual ~TestModuleThread() {}
 
-public:
-	void callBackFuc()
-	{
-		WriteGuard<WfirstRWLock> wLock(rwLock);//write lock
-		//ReadGuard<WfirstRWLock> rLock(rwLock);//read lock
-		//MSG_PRINTF(Msg::MSG_INFO, "%s %s %s %d\n", "thread ", getTid().c_str(), "Test:", this->data);
-		MSG_ARGS(Msg::MSG_INFO, "thread", getTid().c_str(), "Test:", this->data);
-	}
+	// disable copy constructors
+	TestModuleThread(const TestModuleThread&) = delete;
+	TestModuleThread& operator=(const TestModuleThread&) = delete;
 
+public:
+
+	void callBackFuc() override
+	{
+		WGuard wLock(this->rwLock);//write lock
+		//RGuard rLock(this->rwLock);//read lock
+		//MSG_PRINTF(Msg::MSG_INFO, "%s %s %s %d\n", "thread ", getTid().c_str(), "Test:", this->data);
+		MSG_ARGS(Msg::MSG_INFO, "thread", getTid().c_str(), "Test:", this->data++);
+	}
+	
+	void restart(ModuleThread* mt) override
+	{
+		if (!isFinished())
+		{
+			mt = this; //cannot delete "this"
+			if(!mt->isRunning())
+				mt->resume();
+		}
+		else
+		{
+			MSG_ARGS(Msg::MSG_INFO, "Test: restart");
+			TestModuleThread* newThis = new TestModuleThread(this->data);
+			TSleep::msleep(250);//wait for construction
+			newThis->setMaxFps(this->maxFps);
+			newThis->start();
+			mt = newThis;
+			delete this;
+		}	
+	}
 
 private:
 	T data = NULL;

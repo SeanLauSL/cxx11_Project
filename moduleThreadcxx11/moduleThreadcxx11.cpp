@@ -102,7 +102,7 @@ void ModuleThread::run()
 	TSleep::msleep(10);
 	while(true)
 	{
-		TSleep::msleep(200);
+		TSleep::msleep(1000 / maxFps);
 		checkThreadStatus();
 		if (isFinished())
 		{
@@ -130,4 +130,12 @@ std::string ModuleThread::getThisTid()
 	std::stringstream sin;
 	sin << id;
 	return sin.str();
+}
+
+void ModuleThread::setMaxFps(const unsigned int mfps)
+{
+	if (mfps > 0 && mfps < 1000)
+	{
+		maxFps = mfps;
+	}
 }

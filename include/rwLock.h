@@ -98,4 +98,8 @@ private:
 	_RWLockable &rwLockable;
 };
 
+/*
+//reference https://blog.csdn.net/mymodian9612/article/details/52794980
+*/
+
 #endif

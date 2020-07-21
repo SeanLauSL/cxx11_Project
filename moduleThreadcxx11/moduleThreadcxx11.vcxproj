@@ -222,6 +222,7 @@ opencv_ml2413.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClCompile Include="..\src\debugMsg.cpp" />
     <ClCompile Include="moduleThreadcxx11.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="TestModuleThread.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
