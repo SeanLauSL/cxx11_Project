@@ -2,6 +2,7 @@
 #include "sleep.h"
 #include "debugMsg.h"
 #include <sstream>
+#include <memory> //std::share_ptr
 
 ModuleThread::~ModuleThread()
 {
@@ -110,11 +111,44 @@ void ModuleThread::run()
 			MSG_ARGS(Msg::MSG_INFO, "thread", getTid().c_str(), "finished.");
 			break;
 		}
-			
+		//pure virtual function. a default method should be provided if we want to call it
 		callBackFuc();
 	}
 }
 
+//a default method
+void ModuleThread::callBackFuc()
+{
+	std::cout << __LINE__ << " base class ModuleThread: callBackFuc"
+		<< std::endl; std::cout.flush();
+}
+
+ModuleThread* ModuleThread::getRestartThread()
+{
+	if (!isFinished())
+	{
+		if (!this->isRunning())
+			this->resume();
+		return this;
+	}
+	else
+	{
+		ModuleThread* newThis = restoreObject();
+		TSleep::msleep(250);//wait for construction
+		MSG_ARGS(Msg::MSG_INFO, "thread", this->getTid().c_str(),
+			"was restarted as", "thread", newThis->getTid().c_str());
+		newThis->setMaxFps(this->maxFps);
+		newThis->start();
+		delete this;
+		return newThis;
+	}
+}
+
+//a default method. which would not be called
+ModuleThread* ModuleThread::restoreObject()
+{
+	return nullptr;
+}
 
 std::string ModuleThread::getTid()
 {

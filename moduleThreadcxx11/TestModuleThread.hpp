@@ -10,7 +10,7 @@ class TestModuleThread :
 {
 public:
 
-	TestModuleThread(T &_data) : ModuleThread()
+	TestModuleThread(const T &_data) : ModuleThread()
 	{
 		data = _data;
 	}
@@ -21,34 +21,20 @@ public:
 	TestModuleThread(const TestModuleThread&) = delete;
 	TestModuleThread& operator=(const TestModuleThread&) = delete;
 
-public:
-
+private:
+	//override for the thread body
 	void callBackFuc() override
 	{
 		WGuard wLock(this->rwLock);//write lock
 		//RGuard rLock(this->rwLock);//read lock
-		//MSG_PRINTF(Msg::MSG_INFO, "%s %s %s %d\n", "thread ", getTid().c_str(), "Test:", this->data);
 		MSG_ARGS(Msg::MSG_INFO, "thread", getTid().c_str(), "Test:", this->data++);
 	}
-	
-	void restart(ModuleThread* mt) override
+
+	//override for restarting the thread after stop() or suspend()
+	//create an object as same as that before stop() or suspend()
+	ModuleThread* restoreObject() override
 	{
-		if (!isFinished())
-		{
-			mt = this; //cannot delete "this"
-			if(!mt->isRunning())
-				mt->resume();
-		}
-		else
-		{
-			MSG_ARGS(Msg::MSG_INFO, "Test: restart");
-			TestModuleThread* newThis = new TestModuleThread(this->data);
-			TSleep::msleep(250);//wait for construction
-			newThis->setMaxFps(this->maxFps);
-			newThis->start();
-			mt = newThis;
-			delete this;
-		}	
+		return new TestModuleThread(this->data);
 	}
 
 private:
