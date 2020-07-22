@@ -30,8 +30,8 @@ private:
 		MSG_ARGS(Msg::MSG_INFO, "thread", getTid().c_str(), "Test:", this->data++);
 	}
 
-	//override for restarting the thread after stop() or suspend()
-	//create an object as same as that before stop() or suspend()
+	//override for restarting the thread after stop() 
+	//create an object as same as that before stop()
 	ModuleThread* restoreObject() override
 	{
 		return new TestModuleThread(this->data);

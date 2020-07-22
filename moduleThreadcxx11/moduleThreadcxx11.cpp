@@ -6,6 +6,7 @@
 
 ModuleThread::~ModuleThread()
 {
+	MSG_ARGS(Msg::MSG_INFO, "releasing thread", getTid().c_str());
 	if (!isFinished())
 	{
 		stop();
@@ -119,34 +120,32 @@ void ModuleThread::run()
 //a default method
 void ModuleThread::callBackFuc()
 {
-	std::cout << __LINE__ << " base class ModuleThread: callBackFuc"
-		<< std::endl; std::cout.flush();
+	MSG_ARGS(Msg::MSG_WARNING, "[warning]:", 
+		" callBackFuc() of based class ModuleThread was called.");
 }
 
 ModuleThread* ModuleThread::getRestartThread()
 {
 	if (!isFinished())
 	{
-		if (!this->isRunning())
-			this->resume();
-		return this;
+		this->stop();
 	}
-	else
-	{
-		ModuleThread* newThis = restoreObject();
-		TSleep::msleep(250);//wait for construction
-		MSG_ARGS(Msg::MSG_INFO, "thread", this->getTid().c_str(),
-			"was restarted as", "thread", newThis->getTid().c_str());
-		newThis->setMaxFps(this->maxFps);
-		newThis->start();
-		delete this;
-		return newThis;
-	}
+	ModuleThread* newThis = restoreObject();
+	TSleep::msleep(250);//wait for construction
+	MSG_ARGS(Msg::MSG_WARNING, "[warning]:",
+		"thread", this->getTid().c_str(), "was restarted as",
+		"thread", newThis->getTid().c_str());
+	newThis->setMaxFps(this->maxFps);
+	newThis->start();
+	//delete this; //release this pointer outside
+	return newThis;
 }
 
 //a default method. which would not be called
 ModuleThread* ModuleThread::restoreObject()
 {
+	MSG_ARGS(Msg::MSG_WARNING, "[warning]:",
+		" restoreObject() of based class ModuleThread was called.");
 	return nullptr;
 }
 
