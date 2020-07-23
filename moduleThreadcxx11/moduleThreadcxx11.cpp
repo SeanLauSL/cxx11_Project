@@ -9,7 +9,7 @@ WfirstRWLock ModuleThread::rwLock;
 
 ModuleThread::~ModuleThread()
 {
-	MSG_ARGS(Msg::MSG_INFO, "releasing thread", getTid());
+	MSG_ARGS(Msg::MSG_INFO, "releasing object containing thread", getTid());
 	if (!isFinished()){
 		stop();
 	}
