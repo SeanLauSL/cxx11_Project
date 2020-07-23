@@ -126,6 +126,15 @@ void ModuleThread::callBackFunc()
 		" callBackFunc() of based class ModuleThread was called.");
 }*/
 
+
+WfirstRWLock & ModuleThread::t_rwLock()
+{
+	//initial a write-read-lock while calling t_rwLock() at the 1st time 
+	static WfirstRWLock rwLock;
+	return rwLock;
+}
+
+
 ModuleThread* ModuleThread::getRestartThread()
 {
 	if (!isFinished())
@@ -133,7 +142,7 @@ ModuleThread* ModuleThread::getRestartThread()
 		this->stop();
 	}
 	ModuleThread* newThis = restoreObject();
-	TSleep::msleep(250);//wait for construction
+	//TSleep::msleep(250);//wait for construction
 	MSG_ARGS(Msg::MSG_WARNING, "[warning]:",
 		"thread", this->getTid().c_str(), "was restarted as",
 		"thread", newThis->getTid().c_str());
