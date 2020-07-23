@@ -38,12 +38,6 @@ private:
 		}
 	}
 
-	//override for restarting the thread after stop() 
-	//create an object as same as that before stop()
-	ModuleThread* restoreObject() override
-	{
-		return new TestModuleThread(*this->data, this->loop);
-	}
 
 private:
 	T* data{ nullptr };
