@@ -27,7 +27,7 @@ private:
 	//override for the thread body, which cannot contain endless loop
 	void callBackFunc() override
 	{
-		WGuard wLock(t_rwLock());//write lock
+		WGuard wLock(rwLock);//write lock
 		//RGuard rLock(this->rwLock);//read lock
 		unsigned int lo = 10000;
 		while (lo)

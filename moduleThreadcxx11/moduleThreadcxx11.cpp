@@ -4,6 +4,9 @@
 #include <sstream>
 #include <memory> //std::share_ptr
 
+//static member
+WfirstRWLock ModuleThread::rwLock;
+
 ModuleThread::~ModuleThread()
 {
 	MSG_ARGS(Msg::MSG_INFO, "releasing thread", getTid());
@@ -122,14 +125,6 @@ void ModuleThread::callBackFunc()
 	MSG_ARGS(Msg::MSG_WARNING, "[warning]:", 
 		" callBackFunc() of based class ModuleThread was called.");
 }*/
-
-
-WfirstRWLock & ModuleThread::t_rwLock()
-{
-	//initial a write-read-lock while calling t_rwLock() at the 1st time 
-	static WfirstRWLock rwLock;
-	return rwLock;
-}
 
 
 void ModuleThread::restart()
