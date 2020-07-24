@@ -32,7 +32,7 @@ private:
 		unsigned int lo = 10000;
 		while (lo)
 		{
-			//MSG_ARGS(Msg::MSG_INFO, "thread", getTid().c_str(), "Test:", (*this->data)++);
+			//MSG_ARGS(msg::MSG_LEVEL::MSG_INFO, "thread", getTid().c_str(), "Test:", (*this->data)++);
 			(*this->data)++;
 			lo--;
 		}

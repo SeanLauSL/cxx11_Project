@@ -7,9 +7,12 @@
 //static member
 WfirstRWLock ModuleThread::rwLock;
 
+//namespace
+using mType = msg::MSG_LEVEL;
+
 ModuleThread::~ModuleThread()
 {
-	MSG_ARGS(Msg::MSG_INFO, "releasing object containing thread", getTid());
+	MSG_ARGS(mType::MSG_INFO, "releasing object containing thread", getTid());
 	if (!isFinished()){
 		stop();
 	}
@@ -29,8 +32,8 @@ void ModuleThread::stop()
 	std::unique_lock<std::mutex> ulk(cMutex);
 	threadStatus = MODULE_THREAD_QUIT;
 	cdv.notify_one();
-	//MSG_PRINTF(Msg::MSG_INFO, "%s %s %s\n", "thread", getTid().c_str(), "stop request.");
-	MSG_ARGS(Msg::MSG_INFO, "thread", getTid(), "stop request.");
+	//MSG_PRINTF(mType::MSG_INFO, "%s %s %s\n", "thread", getTid().c_str(), "stop request.");
+	MSG_ARGS(mType::MSG_INFO, "thread", getTid(), "stop request.");
 	exTid = getTid();
 	if (thr.joinable()){
 		thr.join();
@@ -66,8 +69,8 @@ void ModuleThread::suspend()
 	std::unique_lock<std::mutex> ulk(cMutex);//unique_lock退出作用域会自动解锁
 	threadStatus = MODULE_THREAD_SUSPEND;
 	//cdv.notify_one();//不应该唤醒任何线程
-	//MSG_PRINTF(Msg::MSG_INFO, "%s %s %s\n", "thread", getTid().c_str(), "suspend request.");
-	MSG_ARGS(Msg::MSG_INFO, "thread", getTid(), "suspend request.");
+	//MSG_PRINTF(mType::MSG_INFO, "%s %s %s\n", "thread", getTid().c_str(), "suspend request.");
+	MSG_ARGS(mType::MSG_INFO, "thread", getTid(), "suspend request.");
 }
 
 //resume the thread
@@ -80,8 +83,8 @@ void ModuleThread::resume()
 	//std::unique_lock<std::mutex> ulk(cMutex, std::defer_lock);
 	threadStatus = MODULE_THREAD_RESUME;
 	cdv.notify_one();
-	//MSG_PRINTF(Msg::MSG_INFO, "%s %s %s\n", "thread", getTid().c_str(), "resume request.");
-	MSG_ARGS(Msg::MSG_INFO, "thread", getTid(), "resume request.");
+	//MSG_PRINTF(mType::MSG_INFO, "%s %s %s\n", "thread", getTid().c_str(), "resume request.");
+	MSG_ARGS(mType::MSG_INFO, "thread", getTid(), "resume request.");
 }
 
 void ModuleThread::checkThreadStatus()
@@ -89,14 +92,14 @@ void ModuleThread::checkThreadStatus()
 	std::unique_lock<std::mutex> ulk(cMutex);
 	while (threadStatus == MODULE_THREAD_SUSPEND)
 	{
-		//MSG_PRINTF(Msg::MSG_INFO, "%s %s %s\n", "thread", getTid().c_str(), "suspended.");
-		MSG_ARGS(Msg::MSG_INFO, "thread", getTid(), "suspended.");
+		//MSG_PRINTF(mType::MSG_INFO, "%s %s %s\n", "thread", getTid().c_str(), "suspended.");
+		MSG_ARGS(mType::MSG_INFO, "thread", getTid(), "suspended.");
 		cdv.wait(ulk, [=]()->bool {
 				return (threadStatus == MODULE_THREAD_RESUME || 
 					threadStatus == MODULE_THREAD_QUIT);}
 		);//阻塞时会自动解锁ulk，唤醒时自动加锁
-		//MSG_PRINTF(Msg::MSG_INFO, "%s %s %s\n", "thread", getTid().c_str(), "resumed.");
-		MSG_ARGS(Msg::MSG_INFO, "thread", getTid(), "resumed.");
+		//MSG_PRINTF(mType::MSG_INFO, "%s %s %s\n", "thread", getTid().c_str(), "resumed.");
+		MSG_ARGS(mType::MSG_INFO, "thread", getTid(), "resumed.");
 	}
 }
 
@@ -105,13 +108,13 @@ void ModuleThread::run()
 	//wait for the construction of std::mutex and std::condition_variable
 	//TSleep::msleep(10);
 	do{
-		//MSG_ARGS(Msg::MSG_INFO, "thread", getTid().c_str(), "fps.", maxFps);
+		//MSG_ARGS(mType::MSG_INFO, "thread", getTid().c_str(), "fps.", maxFps);
 		TSleep::msleep(1000 / maxFps);
 		checkThreadStatus();
 		if (isFinished())
 		{
-			//MSG_PRINTF(Msg::MSG_INFO, "%s %s %s\n", "thread", getTid().c_str(), "finished.");
-			MSG_ARGS(Msg::MSG_INFO, "thread", getTid(), "finished.");
+			//MSG_PRINTF(mType::MSG_INFO, "%s %s %s\n", "thread", getTid().c_str(), "finished.");
+			MSG_ARGS(mType::MSG_INFO, "thread", getTid(), "finished.");
 			break;
 		}
 		//pure virtual function. a default method should be provided if we want to call it
@@ -123,7 +126,7 @@ void ModuleThread::run()
 //a default method
 void ModuleThread::callBackFunc()
 {
-	MSG_ARGS(Msg::MSG_WARNING, "[warning]:", 
+	MSG_ARGS(mType::MSG_WARNING, "[warning]:", 
 		" callBackFunc() of based class ModuleThread was called.");
 }*/
 
@@ -134,7 +137,7 @@ void ModuleThread::restart()
 		stop();
 	}
 	thr = std::thread(&ModuleThread::run, this);
-	MSG_ARGS(Msg::MSG_WARNING, "[warning]:",
+	MSG_ARGS(mType::MSG_WARNING, "[warning]:",
 		"thread", exTid, "was restarted as",
 		"thread", getTid());
 	resume();
