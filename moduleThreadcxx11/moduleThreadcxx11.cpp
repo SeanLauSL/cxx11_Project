@@ -17,6 +17,7 @@ ModuleThread::~ModuleThread()
 
 void ModuleThread::start()
 {
+	thr = std::thread(&ModuleThread::run, this);
 	resume();
 }
 
