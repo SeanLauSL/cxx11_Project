@@ -38,7 +38,6 @@ private:
 		}
 	}
 
-
 private:
 	T* data{ nullptr };
 	bool loop{ true };
