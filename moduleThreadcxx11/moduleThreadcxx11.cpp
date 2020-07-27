@@ -12,7 +12,7 @@ using mType = msg::MSG_LEVEL;
 
 ModuleThread::~ModuleThread()
 {
-	MSG_ARGS(mType::MSG_INFO, "releasing object containing thread", getTid());
+	MSG_ARGS(mType::MSG_INFO, "releasing object contained thread", getTid());
 	if (!isFinished()){
 		stop();
 	}
